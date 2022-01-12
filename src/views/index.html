@@ -36,12 +36,14 @@
   </header>
 
   <main>
+    <!-- how does it work foldable thingy?  -->
     <p>Enter the CSS selector, which applies to all elements with a blue dot 🔵 and press return key or the submit button.</p>
     <p>The timer will start once you correctly solved the intro.</p>
 
+    <hr />
+
     <section>
       <div class="left-column">
-        <h3>Intro</h3>
         <input id="css-input" placeholder="Enter CSS selector here"></input>
         <button id="submit">-></button>
         <div class="codebox">
@@ -53,7 +55,7 @@
       <div class="right-column">
         <blockquote id="timer">00:00:0</blockquote> <!-- todo style -->
         <blockquote><ul>
-          <li>Intro</li>
+          <li><b>Intro</b></li> <!-- indicator for active level -->
           <li>Level 1</li>
           <li>Level 2</li>
           <!-- todo map with levels and add checkboxes + time & Total time -->
