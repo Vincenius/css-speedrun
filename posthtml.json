@@ -1,0 +1,7 @@
+{
+    "input": "src/views/*.html",
+    "output": "dist",
+    "plugins": {
+        "htmlnano": {}
+    }
+}

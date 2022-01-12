@@ -1,0 +1,57 @@
+{
+  "name": "css-speedrun",
+  "version": "1.0.0",
+  "description": "A small project to test your CSS skiulls",
+  "main": "index.js",
+  "scripts": {
+    "css:autoprefixer": "postcss -u autoprefixer -r dist/*.css",
+    "css:scss": "node-sass --output-style compressed -o dist src/scss",
+    "css:lint": "stylelint src/scss/*.scss --syntax scss",
+    "build:assets": "copyfiles src/assets/* dist/assets --flat",
+    "build:css": "npm run css:lint && npm run css:scss && npm run css:autoprefixer",
+    "build:html": "posthtml -c posthtml.json",
+    "build:images": "imagemin src/imgs/**/* --out-dir=dist/imgs",
+    "build:js": "webpack --mode=production",
+    "build": "run-s build:*",
+    "serve": "browser-sync start --server \"dist\" --files \"dist\"",
+    "watch:assets": "onchange \"src/assets\" -- npm run build:assets",
+    "watch:css": "onchange \"src/scss\" -- npm run build:css",
+    "watch:html": "onchange \"src/views\" -- npm run build:html",
+    "watch:images": "onchange \"src/imgs\" -- npm run build:images",
+    "watch:js": "onchange \"src/js\" -- webpack --mode=development",
+    "watch": "run-p serve watch:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vincenius/css-speedrun"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vincenius/css-speedrun/issues"
+  },
+  "homepage": "todo",
+  "devDependencies": {
+    "@babel/preset-env": "^7.15.8",
+    "autoprefixer": "^10.3.7",
+    "babel-loader": "^8.2.2",
+    "browser-sync": "^2.27.5",
+    "copyfiles": "^2.4.1",
+    "htmlnano": "^1.1.1",
+    "imagemin-cli": "^2.1.0",
+    "node-sass": "^7.0.1",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
+    "postcss": "^8.3.9",
+    "postcss-cli": "^9.0.1",
+    "posthtml": "^0.16.5",
+    "posthtml-cli": "^0.10.0",
+    "stylelint": "^13.13.1",
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0"
+  },
+  "dependencies": {
+    "easytimer.js": "^4.5.1",
+    "prismjs": "^1.26.0"
+  }
+}

@@ -1,0 +1,39 @@
+.hidden {
+  display: none;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+main section {
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+}
+
+.left-column {
+  width: 60%;
+  margin-right: 10px;
+}
+
+.right-column {
+  width: 40%;
+  margin-left: 10px;
+}
+
+.codebox {
+  display: flex;
+
+  // pre:first-child { width: 10px; }
+  pre:last-child { width: 100%; }
+}
+
+#css-input {
+  width: calc(100% - 50px);
+  margin-right: 5px;
+}
