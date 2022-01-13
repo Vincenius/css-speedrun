@@ -1,4 +1,9 @@
 footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+
   display: flex;
   justify-content: space-between;
   background: var(--nc-bg-2);
@@ -7,10 +12,25 @@ footer {
   padding-right: 1.5rem;
   padding-left: 1.5rem;
   margin: 0 calc(0px - (50vw - 50%));
-  padding-left: calc(50vw - 50%);
-  padding-right: calc(50vw - 50%);
+  padding-left: calc(50vw - 50% + 2rem);
+  padding-right: calc(50vw - 50% + 2rem);
 
   @media (max-width: 600px) {
     font-size: 0.8rem;
+  }
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  a {
+    color: #fff;
+    opacity: 0.45;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }

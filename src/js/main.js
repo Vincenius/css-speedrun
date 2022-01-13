@@ -8,6 +8,7 @@ const timer = new Timer()
 const levelTimer = new Timer()
 
 let levelIndex = 0
+let finalResult = ''
 const htmlGoal = document.querySelector('#html-goal')
 const htmlInput = document.querySelector('#html-preview')
 const verification = document.querySelector('#verification')
@@ -54,6 +55,7 @@ const initLevel = () => {
   }
   if (levelIndex === puzzles.length) {
     // last level done
+    finalResult = timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths'])
     timer.stop()
 
     jsConfetti.addConfetti()
@@ -66,7 +68,7 @@ const initLevel = () => {
     cssInput.setAttribute('disabled', true)
     submitButton.setAttribute('disabled', true)
 
-    // TODO show some kind of success screen
+    generateWinScreen()
   } else {
     // load next level
     htmlInput.innerHTML = Prism.highlight(puzzles[levelIndex].code, Prism.languages.markup, 'markup');
@@ -111,6 +113,17 @@ const checkLevel = () => {
     levelIndex++;
     initLevel();
   }
+}
+
+const generateWinScreen = () => {
+  const tweetLink = document.querySelector('#share-tweet')
+  const winTweetText = `I've solved all #CSS puzzles on CSS Speedrun™ within ${finalResult} and all I got was this stupid tweet.
+
+https://css-speedrun.netlify.app/`
+
+  tweetLink.setAttribute('href', `https://twitter.com/intent/tweet?text=${encodeURI(winTweetText).replace('#', '%23')}`)
+  document.querySelector('#code-screen').classList.add('hidden')
+  document.querySelector('#result-screen').classList.remove('hidden')
 }
 
 initLevel()

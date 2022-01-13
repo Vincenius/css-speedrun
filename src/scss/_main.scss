@@ -1,5 +1,7 @@
 body {
-  padding-bottom: 0;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 50px;
 }
 
 .hidden {
@@ -130,5 +132,17 @@ main section {
     margin: 0 0 0 auto;
     font-style: italic;
     opacity: 0.5;
+  }
+}
+
+#share-tweet {
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid var(--nc-bg-3);
+  padding: 6px 10px;
+  border-radius: 4px;
+
+  svg {
+    margin-right: 6px;
   }
 }
