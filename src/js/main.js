@@ -3,20 +3,44 @@ import Timer from 'easytimer.js' // https://albert-gonzalez.github.io/easytimer.
 import puzzles from './puzzles'
 
 const timer = new Timer()
+const resultTimes = []
 
-let leveIndex = 0
+let levelIndex = 0
 const htmlGoal = document.querySelector('#html-goal')
 const htmlInput = document.querySelector('#html-preview')
 const verification = document.querySelector('#verification')
 const submitButton = document.querySelector('#submit')
 const cssInput = document.querySelector('#css-input')
 const timebox = document.querySelector('#timer')
+const levelContainer = document.querySelector('#levels')
+
+const levelItems = puzzles
+  .map((p, i) => `<li data-level="${i}">
+    ${i === 0 ? 'Intro' : `Level ${i}`}
+    <i class="timeResult"></i>
+  </li>`)
+  .join(' ')
+levelContainer.innerHTML = levelItems
 
 const initLevel = () => {
-  htmlInput.innerHTML = Prism.highlight(puzzles[leveIndex].code, Prism.languages.markup, 'markup');
-  htmlGoal.innerHTML = puzzles[leveIndex].goal.reduce((acc, curr) => acc + (curr ? '🔵\n' : '\n'), '');
-  verification.innerHTML = puzzles[leveIndex].verificationCode;
+  htmlInput.innerHTML = Prism.highlight(puzzles[levelIndex].code, Prism.languages.markup, 'markup');
+  htmlGoal.innerHTML = puzzles[levelIndex].goal.reduce((acc, curr) => acc + (curr ? '🔵\n' : '\n'), '');
+  verification.innerHTML = puzzles[levelIndex].verificationCode;
   cssInput.value = '';
+
+  // update level sidebar
+  for (let level of document.querySelectorAll('#levels > li')) {
+    const levelNumber = parseInt(level.getAttribute('data-level'))
+
+    if (levelNumber === levelIndex) {
+      level.classList.add('active')
+    }
+    if (levelNumber === (levelIndex - 1)) {
+      level.classList.remove('active')
+      level.classList.add('done')
+      level.querySelector('.timeResult').innerHTML = `(${resultTimes[levelNumber]})`
+    }
+  }
 }
 
 const checkLevel = () => {
@@ -24,7 +48,7 @@ const checkLevel = () => {
   const selectedHtml = verification.querySelectorAll(cssValue)
   const selectedRows = Array.from(selectedHtml).map(elem => parseInt(elem.getAttribute('data-row')))
 
-  const result = puzzles[leveIndex].goal.map((expectedResult, i) =>
+  const result = puzzles[levelIndex].goal.map((expectedResult, i) =>
     selectedRows.includes(i) === expectedResult
   )
   const completedLevel = result.every(r => r)
@@ -32,8 +56,8 @@ const checkLevel = () => {
   // use loop to keep it readable
   let resultString = ''
   let rowResult
-  for (let i = 0; i < puzzles[leveIndex].goal.length; i++) {
-    if (puzzles[leveIndex].goal[i]) { // should be selected
+  for (let i = 0; i < puzzles[levelIndex].goal.length; i++) {
+    if (puzzles[levelIndex].goal[i]) { // should be selected
       rowResult = result[i] ? '🟢\n' : '🔵\n'
     } else { // should not be selected
       rowResult = result[i] ? '\n' : '🔴\n'
@@ -44,12 +68,13 @@ const checkLevel = () => {
   htmlGoal.innerHTML = resultString
 
   if (completedLevel) {
-    leveIndex++;
+    const timeValues = timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths'])
+    resultTimes.push(timeValues);
+    levelIndex++;
     initLevel();
-    // todo store and reset timer
 
+    timer.stop()
     timer.start({ precision: 'secondTenths' })
-    // TODO check if last level?
   }
 }
 
