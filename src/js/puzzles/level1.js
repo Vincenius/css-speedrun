@@ -1,10 +1,11 @@
-const code = `<ul>
-  <li></li>
-  <li></li>
-  <li></li>
-</ul>`
+const code = `<div>
+  <p></p>
+  <p class="foo"></p>
+  <p></p>
+  <p></p>
+</div>`
 
 export default {
   code,
-  goal: [false, false, true, false, false]
+  goal: [false, true, false, true, true, false]
 }

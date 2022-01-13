@@ -3,9 +3,14 @@ header {
   align-items: center;
   justify-content: space-between;
 
-  > div {
+  > a {
     display: flex;
     align-items: center;
+    color: #fff;
+
+    &:hover {
+      color: #fff;
+    }
   }
 }
 
@@ -18,15 +23,30 @@ header svg {
 header h1 {
   font-family: 'ZCOOL KuaiLe', Verdana, Geneva, Tahoma, sans-serif;
   padding: 0;
+  margin: 0;
+
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+  }
 }
 
 header .social {
+  display: flex;
+  align-items: center;
+
   a {
     color: #fff;
+    opacity: 0.45;
+    display: inline-flex;
+
+    &:hover {
+      opacity: 1;
+    }
   }
   svg {
     width: 36px;
     height: 36px;
+    margin: 0 0 0 24px;
   }
   span {
     display: none;

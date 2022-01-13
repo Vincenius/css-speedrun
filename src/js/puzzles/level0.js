@@ -6,7 +6,5 @@ const code = `<ul>
 
 export default {
   code,
-  goal: [false, true, true, true, false]
+  goal: [false, true, false, false, false]
 }
-
-// 🟢🔴🔵 use symbols to show which one is needed

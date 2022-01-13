@@ -7,7 +7,7 @@ export default [
   level0,
   level1,
   level2,
-  level3,
+  // level3,
 ].map(level => ({
   ...level,
   verificationCode: level.code.split('\n').map((row, i) => row.replace('>', ` data-row="${i}">`)).join(' ')

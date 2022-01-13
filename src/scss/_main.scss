@@ -1,3 +1,7 @@
+body {
+  padding-bottom: 0;
+}
+
 .hidden {
   display: none;
 }
@@ -10,20 +14,47 @@ button:disabled {
   cursor: default;
 }
 
+details {
+  list-style: disclosure-closed;
+  padding-left: 25px;
+
+  summary {
+    padding-left: 5px;
+  }
+}
+
+details[open] {
+  list-style: disclosure-open;
+}
+
 main section {
   width: 100%;
   min-height: 300px;
   display: flex;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 
 .left-column {
   width: 60%;
   margin-right: 10px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    margin: 10px 0;
+  }
 }
 
 .right-column {
   width: 40%;
   margin-left: 10px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    margin: 10px 0;
+  }
 }
 
 .codebox {
@@ -40,11 +71,29 @@ main section {
 
 #timer {
   display: block;
+  position: relative;
 
   font-size: 23px;
   width: 100%;
   text-align: center;
   margin-bottom: 14px;
+
+  &.done {
+    background: #2E7D32;
+  }
+
+  &::before {
+    content: attr(data-before);
+    position: absolute;
+    opacity: 0;
+    color: #43A047;
+    transition: all 1s;
+  }
+
+  &.success::before {
+    opacity: 1;
+    transform: translateY(-100%);
+  }
 }
 
 #levels {

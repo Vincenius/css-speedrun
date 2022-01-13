@@ -1,7 +1,9 @@
 import Prism from 'prismjs'
 import Timer from 'easytimer.js' // https://albert-gonzalez.github.io/easytimer.js/
+import JSConfetti from 'js-confetti'
 import puzzles from './puzzles'
 
+const jsConfetti = new JSConfetti()
 const timer = new Timer()
 const levelTimer = new Timer()
 
@@ -23,11 +25,6 @@ const levelItems = puzzles
 levelContainer.innerHTML = levelItems
 
 const initLevel = () => {
-  htmlInput.innerHTML = Prism.highlight(puzzles[levelIndex].code, Prism.languages.markup, 'markup');
-  htmlGoal.innerHTML = puzzles[levelIndex].goal.reduce((acc, curr) => acc + (curr ? '🔵\n' : '\n'), '');
-  verification.innerHTML = puzzles[levelIndex].verificationCode;
-  cssInput.value = '';
-
   // update level sidebar
   for (let level of document.querySelectorAll('#levels > li')) {
     const levelNumber = parseInt(level.getAttribute('data-level'))
@@ -40,21 +37,55 @@ const initLevel = () => {
       level.classList.add('done')
 
       const resultTime = levelTimer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths'])
+      timebox.setAttribute('data-before', resultTime);
+      timebox.classList.add('success');
+      setTimeout(() => { timebox.classList.remove('success')}, 1500)
+
       levelTimer.stop()
       levelTimer.start({ precision: 'secondTenths' })
       level.querySelector('.timeResult').innerHTML = `[${resultTime}]`
+
+      // TODO fix rounding errors of last level?
     }
   }
 
   if (levelIndex === 1) {
     timer.start({ precision: 'secondTenths' })
   }
-  // todo if last level stop timer
+  if (levelIndex === puzzles.length) {
+    // last level done
+    timer.stop()
+
+    jsConfetti.addConfetti()
+    jsConfetti.addConfetti({
+      emojis: ['🌈', '✨', '🦄'],
+      emojiSize: 50,
+      confettiNumber: 50,
+    })
+    timebox.classList.add('done')
+    cssInput.setAttribute('disabled', true)
+    submitButton.setAttribute('disabled', true)
+
+    // TODO show some kind of success screen
+  } else {
+    // load next level
+    htmlInput.innerHTML = Prism.highlight(puzzles[levelIndex].code, Prism.languages.markup, 'markup');
+    htmlGoal.innerHTML = puzzles[levelIndex].goal.reduce((acc, curr) => acc + (curr ? '🔵\n' : '\n'), '');
+    verification.innerHTML = puzzles[levelIndex].verificationCode;
+  }
+
+  cssInput.value = '';
 }
 
 const checkLevel = () => {
   const cssValue = cssInput.value
-  const selectedHtml = verification.querySelectorAll(cssValue)
+  let selectedHtml
+  try {
+    selectedHtml = verification.firstChild.querySelectorAll(cssValue)
+  } catch (e) {
+    // ignore invalid css
+    selectedHtml = []
+  }
   const selectedRows = Array.from(selectedHtml).map(elem => parseInt(elem.getAttribute('data-row')))
 
   const result = puzzles[levelIndex].goal.map((expectedResult, i) =>
@@ -77,7 +108,6 @@ const checkLevel = () => {
   htmlGoal.innerHTML = resultString
 
   if (completedLevel) {
-    // TODO some nice animation on timer
     levelIndex++;
     initLevel();
   }
