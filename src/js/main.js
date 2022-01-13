@@ -3,7 +3,7 @@ import Timer from 'easytimer.js' // https://albert-gonzalez.github.io/easytimer.
 import puzzles from './puzzles'
 
 const timer = new Timer()
-const resultTimes = []
+const levelTimer = new Timer()
 
 let levelIndex = 0
 const htmlGoal = document.querySelector('#html-goal')
@@ -38,9 +38,18 @@ const initLevel = () => {
     if (levelNumber === (levelIndex - 1)) {
       level.classList.remove('active')
       level.classList.add('done')
-      level.querySelector('.timeResult').innerHTML = `(${resultTimes[levelNumber]})`
+
+      const resultTime = levelTimer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths'])
+      levelTimer.stop()
+      levelTimer.start({ precision: 'secondTenths' })
+      level.querySelector('.timeResult').innerHTML = `[${resultTime}]`
     }
   }
+
+  if (levelIndex === 1) {
+    timer.start({ precision: 'secondTenths' })
+  }
+  // todo if last level stop timer
 }
 
 const checkLevel = () => {
@@ -68,13 +77,9 @@ const checkLevel = () => {
   htmlGoal.innerHTML = resultString
 
   if (completedLevel) {
-    const timeValues = timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths'])
-    resultTimes.push(timeValues);
+    // TODO some nice animation on timer
     levelIndex++;
     initLevel();
-
-    timer.stop()
-    timer.start({ precision: 'secondTenths' })
   }
 }
 
