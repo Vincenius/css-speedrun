@@ -141,8 +141,16 @@ main section {
   border: 2px solid var(--nc-bg-3);
   padding: 6px 10px;
   border-radius: 4px;
+  margin-top: 1rem;
 
   svg {
     margin-right: 6px;
+  }
+}
+
+#result-screen {
+  h1 {
+    padding-top: 0;
+    padding-bottom: 1rem;
   }
 }
