@@ -16,6 +16,7 @@ A small fun app to test your CSS knowledge. Find the correct CSS selectors for t
 To create your own puzzles check the files in `/src/js/puzzles`.
 
 They contain the code for the puzzle and an array to mark which lines should be selected.
+Also you can provide an optional hint to help others solve your puzzle.
 
 ## License
 

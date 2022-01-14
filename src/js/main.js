@@ -76,11 +76,14 @@ const initLevel = () => {
     verification.innerHTML = puzzles[levelIndex].verificationCode;
 
     hintLink.classList.add('hidden')
-    hintLink.setAttribute('href', puzzles[levelIndex].hint)
     clearTimeout(hintTimeout)
-    hintTimeout = setTimeout(() => {
-      hintLink.classList.remove('hidden')
-    }, 10000) // show hint after 10 secs
+
+    if (puzzles[levelIndex].hint) {
+      hintLink.setAttribute('href', puzzles[levelIndex].hint)
+      hintTimeout = setTimeout(() => {
+        hintLink.classList.remove('hidden')
+      }, 10000) // show hint after 10 secs
+    }
   }
 
   cssInput.value = '';
