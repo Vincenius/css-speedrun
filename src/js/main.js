@@ -93,6 +93,7 @@ const checkLevel = () => {
     selectedHtml = verification.querySelectorAll(`div ${cssValue}`)
   } catch (e) {
     // ignore invalid css
+    cssInput.classList.add('error')
     selectedHtml = []
   }
   const selectedRows = Array.from(selectedHtml).map(elem => parseInt(elem.getAttribute('data-row')))
@@ -137,6 +138,7 @@ initLevel()
 
 submitButton.addEventListener('click', checkLevel)
 cssInput.addEventListener('keypress', e => {
+  cssInput.classList.remove('error')
   if (e.keyCode === 13) { // check on enter
     checkLevel()
   }

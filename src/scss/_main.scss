@@ -69,6 +69,10 @@ main section {
 #css-input {
   width: calc(100% - 50px);
   margin-right: 5px;
+
+  &.error {
+    border-color: #B71C1C;
+  }
 }
 
 #timer {
