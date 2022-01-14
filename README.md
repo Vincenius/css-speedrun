@@ -1,6 +1,6 @@
 # CSS Speedrun
 
-A small fun app to test your CSS knowledge. Find the correct CSS selectors for the 20 puzzles as fast as possible.
+A small fun app to test your CSS knowledge. Find the correct CSS selectors for the 10 puzzles as fast as possible.
 
 [https://css-speedrun.netlify.app/](https://css-speedrun.netlify.app/)
 

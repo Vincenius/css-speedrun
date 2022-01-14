@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/vincenius/css-speedrun/issues"
   },
-  "homepage": "todo",
+  "homepage": "https://css-speedrun.netlify.app/",
   "devDependencies": {
     "@babel/preset-env": "^7.15.8",
     "autoprefixer": "^10.3.7",
