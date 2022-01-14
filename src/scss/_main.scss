@@ -161,6 +161,10 @@ main section {
   display: inline-flex;
   align-items: center;
 
+  &.hidden {
+    display: none;
+  }
+
   > svg {
     width: 20px;
     height: 20px;
