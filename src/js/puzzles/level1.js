@@ -7,5 +7,6 @@ const code = `<div>
 
 export default {
   code,
-  goal: [false, true, false, true, true, false]
+  goal: [false, true, false, true, true, false],
+  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:not'
 }

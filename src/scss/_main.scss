@@ -154,3 +154,20 @@ main section {
     padding-bottom: 1rem;
   }
 }
+
+#hint {
+  color: #fff;
+  opacity: 0.45;
+  display: inline-flex;
+  align-items: center;
+
+  > svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}

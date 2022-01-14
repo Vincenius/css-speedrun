@@ -6,5 +6,6 @@ const code = `<ul>
 
 export default {
   code,
-  goal: [false, true, false, false, false]
+  goal: [false, true, false, false, false],
+  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:first-child'
 }

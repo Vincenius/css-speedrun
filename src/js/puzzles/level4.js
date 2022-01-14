@@ -1,12 +1,15 @@
 const code = `<div>
+  <span data-item="foo"></span>
   <span></span>
-  <p>
-    <a></a>
+  <div>
     <span></span>
-  </p>
+    <span data-item="bar"></span>
+    <span></span>
+  </div>
 </div>`
 
 export default {
   code,
-  goal: [false, true, true, false, false, false, false]
+  goal: [false, true, false, false, false, true, false, false, false],
+  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors',
 }

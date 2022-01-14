@@ -16,6 +16,8 @@ const submitButton = document.querySelector('#submit')
 const cssInput = document.querySelector('#css-input')
 const timebox = document.querySelector('#timer')
 const levelContainer = document.querySelector('#levels')
+const hintLink = document.querySelector('#hint')
+let hintTimeout
 
 const levelItems = puzzles
   .map((p, i) => `<li data-level="${i}">
@@ -45,8 +47,6 @@ const initLevel = () => {
       levelTimer.stop()
       levelTimer.start({ precision: 'secondTenths' })
       level.querySelector('.timeResult').innerHTML = `[${resultTime}]`
-
-      // TODO fix rounding errors of last level?
     }
   }
 
@@ -74,6 +74,13 @@ const initLevel = () => {
     htmlInput.innerHTML = Prism.highlight(puzzles[levelIndex].code, Prism.languages.markup, 'markup');
     htmlGoal.innerHTML = puzzles[levelIndex].goal.reduce((acc, curr) => acc + (curr ? '🔵\n' : '\n'), '');
     verification.innerHTML = puzzles[levelIndex].verificationCode;
+
+    hintLink.classList.add('hidden')
+    hintLink.setAttribute('href', puzzles[levelIndex].hint)
+    clearTimeout(hintTimeout)
+    hintTimeout = setTimeout(() => {
+      hintLink.classList.remove('hidden')
+    }, 10000) // show hint after 10 secs
   }
 
   cssInput.value = '';
@@ -83,7 +90,7 @@ const checkLevel = () => {
   const cssValue = cssInput.value
   let selectedHtml
   try {
-    selectedHtml = verification.firstChild.querySelectorAll(cssValue)
+    selectedHtml = verification.querySelectorAll(`div ${cssValue}`)
   } catch (e) {
     // ignore invalid css
     selectedHtml = []
