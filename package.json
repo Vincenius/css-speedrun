@@ -6,9 +6,8 @@
   "scripts": {
     "css:autoprefixer": "postcss -u autoprefixer -r dist/*.css",
     "css:scss": "node-sass --output-style compressed -o dist src/scss",
-    "css:lint": "stylelint src/scss/*.scss --syntax scss",
     "build:assets": "copyfiles src/assets/* dist/assets --flat",
-    "build:css": "npm run css:lint && npm run css:scss && npm run css:autoprefixer",
+    "build:css": "npm run css:scss && npm run css:autoprefixer",
     "build:html": "copyfiles src/views/*.html dist --flat",
     "build:js": "webpack --mode=production",
     "build": "run-s build:*",
@@ -41,7 +40,6 @@
     "onchange": "^7.1.0",
     "postcss": "^8.3.9",
     "postcss-cli": "^9.0.1",
-    "stylelint": "^14.2.0",
     "webpack": "^5.58.1",
     "webpack-cli": "^4.9.0"
   },
