@@ -1,8 +1,8 @@
 const code = `<form>
-  <input></input>
-  <input disabled></input>
-  <input></input>
-  <input></input>
+  <input />
+  <input disabled />
+  <input />
+  <input />
   <button disabled></button>
   <button></button>
 </form>`
