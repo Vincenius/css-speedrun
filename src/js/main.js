@@ -75,13 +75,13 @@ const initLevel = () => {
     htmlGoal.innerHTML = puzzles[levelIndex].goal.reduce((acc, curr) => acc + (curr ? '🔵\n' : '\n'), '');
     verification.innerHTML = puzzles[levelIndex].verificationCode;
 
-    hintLink.classList.add('hidden')
+    hintLink.classList.remove('fade-in')
     clearTimeout(hintTimeout)
 
     if (puzzles[levelIndex].hint) {
       hintLink.setAttribute('href', puzzles[levelIndex].hint)
       hintTimeout = setTimeout(() => {
-        hintLink.classList.remove('hidden')
+        hintLink.classList.add('fade-in')
       }, 10000) // show hint after 10 secs
     }
   }

@@ -75,6 +75,13 @@ main section {
   }
 }
 
+@keyframes timerSuccess {
+  0% { opacity: 0; transform: translateY(0); }
+  80% { opacity: 1; transform: translateY(-100%); }
+  100% { opacity: 0; transform: translateY(-100%); }
+}
+
+
 #timer {
   display: block;
   position: relative;
@@ -93,12 +100,13 @@ main section {
     position: absolute;
     opacity: 0;
     color: #43A047;
-    transition: all 1s;
+    visibility: hidden;
   }
 
   &.success::before {
-    opacity: 1;
-    transform: translateY(-100%);
+    visibility: visible;
+    animation-name: timerSuccess;
+    animation-duration: 1.5s;
   }
 }
 
@@ -161,12 +169,15 @@ main section {
 
 #hint {
   color: #fff;
-  opacity: 0.45;
+  opacity: 0;
   display: inline-flex;
   align-items: center;
+  transition: opacity ease-in-out 0.5s;
+  visibility: hidden;
 
-  &.hidden {
-    display: none;
+  &.fade-in {
+    visibility: visible;
+    opacity: 0.45;
   }
 
   > svg {
