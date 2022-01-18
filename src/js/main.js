@@ -82,8 +82,10 @@ const levelSuccess = () => {
         + ((newResult.seconds - prevResult.seconds) * 10)
         + ((newResult.minutes - prevResult.minutes) * 600)
       const minutes = parseInt(difference / 600)
-      const seconds = parseInt((difference - (minutes * 60)) / 10)
-      const secondTenths = parseInt(difference - (minutes * 60) - (seconds * 10))
+      const seconds = parseInt((difference - (minutes * 600)) / 10)
+      const secondTenths = parseInt(difference - (minutes * 600) - (seconds * 10))
+
+      console.log(difference, minutes, seconds)
 
       const resultTime = `${getFormattedNumber(minutes)}:${getFormattedNumber(seconds)}:${secondTenths}`
 
