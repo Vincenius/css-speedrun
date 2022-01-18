@@ -11,4 +11,5 @@ export default {
   code,
   goal: [false, true, false, true, true, false, true, false],
   hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:enabled',
+  solution: '*:enabled',
 }

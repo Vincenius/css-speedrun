@@ -73,6 +73,10 @@ main section {
   &.error {
     border-color: #B71C1C;
   }
+
+  &.success {
+    border-color: #43A047;
+  }
 }
 
 @keyframes timerSuccess {
@@ -189,4 +193,12 @@ main section {
   &:hover {
     opacity: 1;
   }
+}
+
+#solution, #next-level {
+  margin: 0;
+}
+
+#next-level {
+  opacity: 0.5;
 }

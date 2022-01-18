@@ -12,4 +12,5 @@ export default {
   code,
   goal: [false, false, false, true, false, true, false, true ,false],
   hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child',
+  solution: 'li:nth-child(2n + 3)',
 }

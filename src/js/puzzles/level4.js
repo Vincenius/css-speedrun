@@ -12,4 +12,5 @@ export default {
   code,
   goal: [false, true, false, false, false, true, false, false, false],
   hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors',
+  solution: 'span[data-item]',
 }

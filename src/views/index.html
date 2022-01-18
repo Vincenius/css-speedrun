@@ -52,14 +52,19 @@
   <main>
     <details>
       <summary>How does it work?</summary>
-      <p>Enter the CSS selector, which applies to all elements with a blue dot 🔵 and press the return key or the submit button.</p>
+      <p>Enter the CSS selector, which applies to all elements with a blue dot 🔵 and press the enter or the submit button.</p>
       <p>The timer will start once you correctly solved the first puzzle.</p>
     </details>
 
     <section>
       <div class="left-column" id="code-screen">
-        <input id="css-input" placeholder="Enter CSS selector here" />
+        <input id="css-input" placeholder="Enter CSS selector eg. div > .foo" />
         <button id="submit">-></button>
+        <p id="next-level" class="hidden">Press enter or the submit button to continue</p>
+        <p id="solution" class="hidden">
+          devs choice:
+          <code id="solution-code"></code>
+        </p>
         <div class="codebox">
           <pre><code id="html-goal" class="language-markup"></code></pre>
           <pre><code id="html-preview" class="language-markup"></code></pre>

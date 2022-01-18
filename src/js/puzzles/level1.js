@@ -8,5 +8,6 @@ const code = `<div>
 export default {
   code,
   goal: [false, true, false, true, true, false],
-  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:not'
+  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:not',
+  solution: 'p:not(.foo)',
 }

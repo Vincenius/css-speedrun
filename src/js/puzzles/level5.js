@@ -15,4 +15,5 @@ export default {
   code,
   goal: [false, false, false, false, false, true, true, false, false, true, false, false],
   hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_combinator',
+  solution: 'p ~ span',
 }

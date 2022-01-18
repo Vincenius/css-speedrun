@@ -11,5 +11,6 @@ const code = `<div id="foo">
 export default {
   code,
   goal: [false, true, false, false, false, false, false, true, false],
-  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Child_combinator'
+  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Child_combinator',
+  solution: '#foo > .foo',
 }

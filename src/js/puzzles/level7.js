@@ -15,4 +15,5 @@ export default {
   code,
   goal: [false, true, true, false, false, true, true, false, false, true, false, false],
   hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Selector_list',
+  solution: '#one, #two, #five, #six, #nine',
 }

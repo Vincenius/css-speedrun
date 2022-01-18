@@ -9,5 +9,6 @@ const code = `<div>
 export default {
   code,
   goal: [false, true, true, false, false, false, false],
-  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Child_combinator'
+  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Child_combinator',
+  solution: 'div > *',
 }
