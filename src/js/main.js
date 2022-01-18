@@ -48,6 +48,24 @@ const levelSuccess = () => {
     nextLevel.classList.remove('hidden')
   }
 
+  if (levelIndex === puzzles.length) {
+    // last level done
+    finalResult = timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths'])
+    timer.stop()
+
+    jsConfetti.addConfetti()
+    jsConfetti.addConfetti({
+      emojis: ['🌈', '✨', '🦄'],
+      emojiSize: 50,
+      confettiNumber: 50,
+    })
+    timebox.classList.add('done')
+    submitButton.setAttribute('disabled', true)
+    cssInput.setAttribute('disabled', true)
+
+    generateWinScreen()
+  }
+
   // update level sidebar
   for (let level of document.querySelectorAll('#levels > li')) {
     const levelNumber = parseInt(level.getAttribute('data-level'))
@@ -88,37 +106,20 @@ const initLevel = () => {
     timer.start()
   }
 
-  if (levelIndex === puzzles.length) {
-    // last level done
-    finalResult = timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths'])
-    timer.stop()
+  // load next level
+  cssInput.removeAttribute('disabled')
+  htmlInput.innerHTML = Prism.highlight(puzzles[levelIndex].code, Prism.languages.markup, 'markup');
+  htmlGoal.innerHTML = puzzles[levelIndex].goal.reduce((acc, curr) => acc + (curr ? '🔵\n' : '\n'), '');
+  verification.innerHTML = puzzles[levelIndex].verificationCode;
 
-    jsConfetti.addConfetti()
-    jsConfetti.addConfetti({
-      emojis: ['🌈', '✨', '🦄'],
-      emojiSize: 50,
-      confettiNumber: 50,
-    })
-    timebox.classList.add('done')
-    submitButton.setAttribute('disabled', true)
+  hintLink.classList.remove('fade-in')
+  clearTimeout(hintTimeout)
 
-    generateWinScreen()
-  } else {
-    // load next level
-    cssInput.removeAttribute('disabled')
-    htmlInput.innerHTML = Prism.highlight(puzzles[levelIndex].code, Prism.languages.markup, 'markup');
-    htmlGoal.innerHTML = puzzles[levelIndex].goal.reduce((acc, curr) => acc + (curr ? '🔵\n' : '\n'), '');
-    verification.innerHTML = puzzles[levelIndex].verificationCode;
-
-    hintLink.classList.remove('fade-in')
-    clearTimeout(hintTimeout)
-
-    if (puzzles[levelIndex].hint) {
-      hintLink.setAttribute('href', puzzles[levelIndex].hint)
-      hintTimeout = setTimeout(() => {
-        hintLink.classList.add('fade-in')
-      }, 10000) // show hint after 10 secs
-    }
+  if (puzzles[levelIndex].hint) {
+    hintLink.setAttribute('href', puzzles[levelIndex].hint)
+    hintTimeout = setTimeout(() => {
+      hintLink.classList.add('fade-in')
+    }, 10000) // show hint after 10 secs
   }
 
   cssInput.value = '';
@@ -167,7 +168,7 @@ const generateWinScreen = () => {
 https://css-speedrun.netlify.app/`
 
   tweetLink.setAttribute('href', `https://twitter.com/intent/tweet?text=${encodeURI(winTweetText).replace('#', '%23')}`)
-  document.querySelector('#code-screen').classList.add('hidden')
+  // document.querySelector('#code-screen').classList.add('hidden')
   document.querySelector('#result-screen').classList.remove('hidden')
 }
 
