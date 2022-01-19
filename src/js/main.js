@@ -85,8 +85,6 @@ const levelSuccess = () => {
       const seconds = parseInt((difference - (minutes * 600)) / 10)
       const secondTenths = parseInt(difference - (minutes * 600) - (seconds * 10))
 
-      console.log(difference, minutes, seconds)
-
       const resultTime = `${getFormattedNumber(minutes)}:${getFormattedNumber(seconds)}:${secondTenths}`
 
       timebox.setAttribute('data-before', resultTime);
