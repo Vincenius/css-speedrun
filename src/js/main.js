@@ -147,14 +147,17 @@ const checkLevel = () => {
   let rowResult
   for (let i = 0; i < puzzles[levelIndex].goal.length; i++) {
     if (puzzles[levelIndex].goal[i]) { // should be selected
-      rowResult = result[i] ? '🟢\n' : '🔵\n'
+      rowResult = result[i] ? '<li class="correct"></li>' : '<li></li>'
     } else { // should not be selected
-      rowResult = result[i] ? '\n' : '🔴\n'
+      rowResult = result[i] ? '<li></li>' : '<li class="wrong"></li>'
     }
     resultString += rowResult
   }
 
-  htmlGoal.innerHTML = resultString
+  if (!htmlInput.querySelector('.check')) {
+    htmlInput.innerHTML = htmlInput.innerHTML + '<ul class="check"></ul>'
+  }
+  htmlInput.querySelector('.check').innerHTML = resultString
 
   if (completedLevel) {
     levelSuccess()

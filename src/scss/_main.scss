@@ -60,6 +60,7 @@ main section {
 }
 
 .codebox {
+  position: relative;
   display: flex;
 
   // pre:first-child { width: 10px; }
@@ -201,4 +202,39 @@ main section {
 
 #next-level {
   opacity: 0.5;
+}
+
+#html-selection {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#html-preview {
+  position: relative;
+  display: block;
+
+  .check {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+
+    li {
+      width: 100%;
+      opacity: 0.2;
+      height: 25px;
+      margin: 0;
+    }
+
+    .correct {
+      background-color: #2E7D32;
+    }
+    .wrong {
+      background-color: #B71C1C;
+    }
+  }
 }
