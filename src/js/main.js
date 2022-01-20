@@ -109,7 +109,7 @@ const initLevel = () => {
   // load next level
   cssInput.removeAttribute('disabled')
   htmlInput.innerHTML = Prism.highlight(puzzles[levelIndex].code, Prism.languages.markup, 'markup');
-  htmlGoal.innerHTML = puzzles[levelIndex].goal.reduce((acc, curr) => acc + (curr ? '🔵\n' : '\n'), '');
+  htmlGoal.innerHTML = puzzles[levelIndex].goal.reduce((acc, curr) => acc + (curr ? '➡️\n' : '\n'), '');
   verification.innerHTML = puzzles[levelIndex].verificationCode;
 
   hintLink.classList.remove('fade-in')
