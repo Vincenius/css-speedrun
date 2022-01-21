@@ -7,6 +7,7 @@ const code = `<ul>
 export default {
   code,
   goal: [false, true, false, false, false],
-  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:first-child',
+  hint1: 'Try a selector that only selects the first child',
+  hint2: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:first-child',
   solution: 'li:first-child',
 }

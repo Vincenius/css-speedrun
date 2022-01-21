@@ -10,6 +10,7 @@ const code = `<form>
 export default {
   code,
   goal: [false, true, false, true, true, false, true, false],
-  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:enabled',
+  hint1: 'You can use a pseudo-class to target<br/>elements with a specific state',
+  hint2: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:enabled',
   solution: ':enabled',
 }

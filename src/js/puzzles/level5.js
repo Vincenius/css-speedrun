@@ -14,6 +14,7 @@ const code = `<div>
 export default {
   code,
   goal: [false, false, false, false, false, true, true, false, false, true, false, false],
-  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_combinator',
+  hint1: 'There is a combinator that<br/>matches following elements',
+  hint2: 'https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_combinator',
   solution: 'p ~ span',
 }

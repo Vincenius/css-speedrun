@@ -19,6 +19,7 @@ const code = `<div>
 export default {
   code,
   goal: [false, false, false, true, false, false, false, false, true, false, false, false, false, false, false, false],
-  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors',
+  hint1: 'Use a combination of the things you used before',
+  hint2: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors',
   solution: 'div div span + code:not(.foo)',
 }

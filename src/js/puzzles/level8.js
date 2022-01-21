@@ -17,6 +17,7 @@ const code = `<div>
 export default {
   code,
   goal: [false, false, false, false, true, false, false, false, false, true, false, false, false, true],
-  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator',
+  hint1: 'Use a combinator that targets the immediate next child',
+  hint2: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator',
   solution: 'a + span',
 }

@@ -1,6 +1,7 @@
 import Prism from 'prismjs'
 import Timer from 'easytimer.js' // https://albert-gonzalez.github.io/easytimer.js/
 import JSConfetti from 'js-confetti'
+import { createPopper } from '@popperjs/core';
 import puzzles from './puzzles'
 
 const jsConfetti = new JSConfetti()
@@ -9,7 +10,8 @@ const timer = new Timer({ precision: 'secondTenths' })
 let levelIndex = 0
 let finalResult = ''
 let isLevelSuccess = false
-let hintTimeout
+let hintTimeout1
+let hintTimeout2
 const results = []
 const htmlGoal = document.querySelector('#html-goal')
 const htmlInput = document.querySelector('#html-preview')
@@ -18,10 +20,12 @@ const submitButton = document.querySelector('#submit')
 const cssInput = document.querySelector('#css-input')
 const timebox = document.querySelector('#timer')
 const levelContainer = document.querySelector('#levels')
-const hintLink = document.querySelector('#hint')
+const hintLink1 = document.querySelector('#hint1')
+const hintLink2 = document.querySelector('#hint2')
 const solution = document.querySelector('#solution')
 const solutionCode = document.querySelector('#solution-code')
 const nextLevel = document.querySelector('#next-level')
+const tooltip = document.querySelector('#tooltip')
 
 const levelItems = puzzles
   .map((p, i) => `<li data-level="${i}">
@@ -42,7 +46,8 @@ const levelSuccess = () => {
   results.push(Object.assign({}, timer.getTimeValues()))
   solution.classList.remove('hidden')
   cssInput.classList.add('success')
-  clearTimeout(hintTimeout)
+  clearTimeout(hintTimeout1)
+  clearTimeout(hintTimeout2)
 
   if (levelIndex === 1) {
     nextLevel.classList.remove('hidden')
@@ -112,14 +117,22 @@ const initLevel = () => {
   htmlGoal.innerHTML = puzzles[levelIndex].goal.reduce((acc, curr) => acc + (curr ? '➡️\n' : '\n'), '');
   verification.innerHTML = puzzles[levelIndex].verificationCode;
 
-  hintLink.classList.remove('fade-in')
-  clearTimeout(hintTimeout)
+  hintLink1.classList.remove('fade-in')
+  hintLink2.classList.remove('fade-in')
+  clearTimeout(hintTimeout1)
+  clearTimeout(hintTimeout2)
 
-  if (puzzles[levelIndex].hint) {
-    hintLink.setAttribute('href', puzzles[levelIndex].hint)
-    hintTimeout = setTimeout(() => {
-      hintLink.classList.add('fade-in')
+  if (puzzles[levelIndex].hint1) {
+    tooltip.innerHTML = puzzles[levelIndex].hint1
+    hintTimeout1 = setTimeout(() => {
+      hintLink1.classList.add('fade-in')
     }, 10000) // show hint after 10 secs
+  }
+  if (puzzles[levelIndex].hint2) {
+    hintLink2.setAttribute('href', puzzles[levelIndex].hint2)
+    hintTimeout2 = setTimeout(() => {
+      hintLink2.classList.add('fade-in')
+    }, 20000) // show hint after 20 secs
   }
 
   cssInput.value = '';
@@ -199,3 +212,36 @@ cssInput.addEventListener('keypress', e => {
 timer.addEventListener('secondTenthsUpdated', function (e) {
   timebox.innerHTML = timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']);
 })
+
+// TOOLTIP HINT
+const popperInstance = createPopper(hintLink1, tooltip, {
+  placement: 'bottom-end',
+  modifiers: [
+    {
+      name: 'offset',
+      options: {
+        offset: [0, 8],
+      },
+    },
+  ],
+});
+
+function show() {
+  tooltip.setAttribute('data-show', '');
+  popperInstance.update();
+}
+
+function hide() {
+  tooltip.removeAttribute('data-show');
+}
+
+const showEvents = ['mouseenter', 'focus'];
+const hideEvents = ['mouseleave', 'blur'];
+
+showEvents.forEach((event) => {
+  hintLink1.addEventListener(event, show);
+});
+
+hideEvents.forEach((event) => {
+  hintLink1.addEventListener(event, hide);
+});

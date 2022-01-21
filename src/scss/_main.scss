@@ -1,7 +1,7 @@
 body {
   position: relative;
   min-height: 100vh;
-  padding-bottom: 75px;
+  padding-bottom: 110px;
 }
 
 .hidden {
@@ -172,7 +172,11 @@ main section {
   }
 }
 
-#hint {
+#hint1 {
+  margin-right: 20px;
+}
+
+#hint1, #hint2 {
   color: #fff;
   opacity: 0;
   display: inline-flex;
@@ -237,4 +241,18 @@ main section {
       background-color: #EF5350;
     }
   }
+}
+
+#tooltip {
+  background: #333;
+  color: white;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 1em;
+  border-radius: 4px;
+  display: none;
+}
+
+#tooltip[data-show] {
+  display: block;
 }

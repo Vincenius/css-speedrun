@@ -14,6 +14,7 @@ const code = `<ol>
 export default {
   code,
   goal: [false, true, true, false, false, true, true, false, false, true, false, false],
-  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Selector_list',
+  hint1: 'Looks stupid - but try to use<br/>the id selector for this one',
+  hint2: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Selector_list',
   solution: '#one, #two, #five, #six, #nine',
 }

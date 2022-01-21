@@ -11,6 +11,7 @@ const code = `<div id="foo">
 export default {
   code,
   goal: [false, true, false, false, false, false, false, true, false],
-  hint: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Child_combinator',
+  hint1: 'Here, the direct child selector<br/>is helpful again',
+  hint2: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Child_combinator',
   solution: '#foo > .foo',
 }
