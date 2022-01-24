@@ -63,7 +63,7 @@ main section {
   position: relative;
   display: flex;
 
-  // pre:first-child { width: 10px; }
+  pre:first-child { overflow: hidden; }
   pre:last-child { width: 100%; }
 }
 
