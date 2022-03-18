@@ -18,23 +18,23 @@ To create your own puzzles check the files in `/src/js/puzzles`.
 They contain the code for the puzzle and an array to mark which lines should be selected.
 Also you can provide an optional hint to help others solve your puzzle.
 
-## See Answer
+## Solutions
 
 <details>
 	<summary>Answer list: </summary>
-		Intro: <code>ul :first-child</code>
-	<ul>
-		<li>Level 1: <code>div :not(.foo)</code></li>
-		<li>Level 2: <code>ul :nth-child(2n+3)</code></li>
-		<li>Level 3: <code>div > *</code></li>
-		<li>Level 4: <code>div span[data-item]</code></li>
-		<li>Level 5: <code>p ~ span</code></li>
-		<li>Level 6: <code>form :enabled</code></li>
-		<li>Level 7: <code>#one,#two,#five,#six,#nine</code></li>
-		<li>Level 8: <code>a + span</code></li>
-		<li>Level 9: <code>#foo > .foo</code></li>
-		<li>Level 10: <code>div div span ~ code:not(.foo)</code></li>
-	</ul>
+		Intro: <code>li:first-child</code>
+  <ul>
+    <li>Level 1: <code>p:not(.foo)</code></li>
+    <li>Level 2: <code>li:nth-child(2n + 3)</code></li>
+    <li>Level 3: <code>div > *</code></li>
+    <li>Level 4: <code>span[data-item]</code></li>
+    <li>Level 5: <code>p ~ span</code></li>
+    <li>Level 6: <code>:enabled</code></li>
+    <li>Level 7: <code>#one, #two, #five, #six, #nine</code></li>
+    <li>Level 8: <code>a + span</code></li>
+    <li>Level 9: <code>#foo > .foo</code></li>
+    <li>Level 10: <code>div div span + code:not(.foo)</code></li>
+  </ul>
 </details>
 
 ## License
