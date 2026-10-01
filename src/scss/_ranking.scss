@@ -1,0 +1,277 @@
+// Ranking System Styles
+
+.ranked-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.ranked-modal-content {
+  background: var(--nc-bg-2, #111);
+  border: 2px solid var(--nc-bg-3, #222);
+  border-radius: 8px;
+  padding: 32px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease-out;
+
+  h2 {
+    margin: 0 0 16px;
+    font-size: 1.8rem;
+    color: var(--nc-tx-1, #fff);
+    text-align: center;
+  }
+
+  p {
+    margin: 0 0 16px;
+    color: var(--nc-tx-2, #ccc);
+    text-align: center;
+    font-size: 0.95rem;
+  }
+}
+
+.ranked-input-group {
+  margin-bottom: 20px;
+
+  input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--nc-bg-3, #222);
+    border-radius: 6px;
+    background: var(--nc-bg-1, #000);
+    color: var(--nc-tx-1, #fff);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--nc-lk-1, #3291ff);
+      box-shadow: 0 0 0 3px rgba(50, 145, 255, 0.2);
+    }
+
+    &::placeholder {
+      color: var(--nc-tx-3, #999);
+    }
+  }
+}
+
+.ranked-modal-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ranked-button-primary,
+.ranked-button-secondary {
+  padding: 12px 20px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  flex: 1;
+  min-width: 120px;
+}
+
+.ranked-button-primary {
+  background: var(--nc-lk-1, #3291ff);
+  color: var(--nc-bg-1, #000);
+  border-color: var(--nc-lk-1, #3291ff);
+
+  &:hover {
+    background: var(--nc-lk-2, #0070f3);
+    border-color: var(--nc-lk-2, #0070f3);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.ranked-button-secondary {
+  background: transparent;
+  color: var(--nc-tx-1, #fff);
+  border-color: var(--nc-bg-3, #222);
+
+  &:hover {
+    border-color: var(--nc-tx-1, #fff);
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.ranked-mode-button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px 16px;
+  border: 2px solid var(--nc-lk-1, #3291ff);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--nc-lk-1, #3291ff);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--nc-lk-1, #3291ff);
+    color: var(--nc-bg-1, #000);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Ranking View Modal
+.ranking-modal {
+  max-width: 700px;
+}
+
+.ranking-difficulty-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ranking-tab-btn {
+  padding: 8px 14px;
+  border: 2px solid var(--nc-bg-3, #222);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--nc-tx-2, #ccc);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--nc-tx-1, #fff);
+    color: var(--nc-tx-1, #fff);
+  }
+
+  &.active {
+    background: var(--nc-lk-1, #3291ff);
+    border-color: var(--nc-lk-1, #3291ff);
+    color: var(--nc-bg-1, #000);
+  }
+}
+
+.ranking-list {
+  margin-bottom: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+
+  thead {
+    background: var(--nc-bg-1, #000);
+    border-bottom: 2px solid var(--nc-bg-3, #222);
+  }
+
+  th {
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--nc-tx-2, #ccc);
+  }
+
+  td {
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--nc-bg-3, #222);
+    color: var(--nc-tx-1, #fff);
+  }
+
+  tbody tr {
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--nc-bg-1, #000);
+    }
+
+    &.ranking-row-highlight {
+      background: rgba(50, 145, 255, 0.1);
+      border-left: 3px solid var(--nc-lk-1, #3291ff);
+    }
+  }
+}
+
+.ranking-position {
+  font-weight: 700;
+  color: var(--nc-lk-1, #3291ff);
+  min-width: 30px;
+}
+
+.ranking-name {
+  font-weight: 600;
+}
+
+.ranking-time {
+  font-family: monospace;
+  font-weight: 700;
+}
+
+.ranking-date {
+  color: var(--nc-tx-3, #999);
+  font-size: 0.85rem;
+}
+
+.ranking-empty {
+  text-align: center;
+  color: var(--nc-tx-3, #999);
+  padding: 40px 20px;
+  font-style: italic;
+}
+
+// Animation
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Scrollbar styling
+.ranking-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ranking-list::-webkit-scrollbar-track {
+  background: var(--nc-bg-1, #000);
+  border-radius: 4px;
+}
+
+.ranking-list::-webkit-scrollbar-thumb {
+  background: var(--nc-bg-3, #222);
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--nc-tx-3, #999);
+  }
+}
